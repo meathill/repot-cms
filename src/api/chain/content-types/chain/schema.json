@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "chains",
+  "info": {
+    "singularName": "chain",
+    "pluralName": "chains",
+    "displayName": "Chain",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "overview": {
+      "type": "text",
+      "required": true
+    },
+    "developer_docs": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "chain_language": {
+      "type": "string",
+      "required": true
+    },
+    "consensus": {
+      "type": "string"
+    },
+    "network_layer": {
+      "type": "string"
+    },
+    "network_type": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "protocols": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::protocol.protocol",
+      "mappedBy": "chains"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "explorer": {
+      "type": "string"
+    },
+    "whitepaper": {
+      "type": "string"
+    }
+  }
+}

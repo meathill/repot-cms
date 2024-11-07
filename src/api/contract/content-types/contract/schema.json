@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contracts",
+  "info": {
+    "singularName": "contract",
+    "pluralName": "contracts",
+    "displayName": "Contract",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "document_link": {
+      "type": "string"
+    },
+    "protocol": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::protocol.protocol",
+      "inversedBy": "contracts"
+    }
+  }
+}
