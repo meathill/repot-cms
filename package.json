@@ -1,6 +1,6 @@
 {
   "name": "repot-cms",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "A Strapi application",
   "scripts": {
@@ -28,8 +28,9 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": ">=18.0.0 <=22.x.x",
-    "npm": ">=6.0.0"
+    "node": ">=20.0.0 <=22.x.x",
+    "npm": ">=10.0.0",
+    "pnpm": ">=9.10.0"
   },
   "strapi": {
     "uuid": "6c684c1b-448f-440e-be3d-4cb4a3f4a747"
