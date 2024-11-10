@@ -415,7 +415,6 @@ export interface ApiChainChain extends Struct.CollectionTypeSchema {
 export interface ApiContractContract extends Struct.CollectionTypeSchema {
   collectionName: 'contracts';
   info: {
-    description: '';
     displayName: 'Contract';
     pluralName: 'contracts';
     singularName: 'contract';
@@ -427,18 +426,19 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.RichText;
-    document_link: Schema.Attribute.String;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    document_links: Schema.Attribute.Text & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::contract.contract'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    protocol: Schema.Attribute.Relation<'manyToOne', 'api::protocol.protocol'>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    protocols: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::protocol.protocol'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -459,7 +459,10 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
   };
   attributes: {
     chains: Schema.Attribute.Relation<'manyToMany', 'api::chain.chain'>;
-    contracts: Schema.Attribute.Relation<'oneToMany', 'api::contract.contract'>;
+    contracts: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::contract.contract'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

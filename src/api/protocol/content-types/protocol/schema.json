@@ -26,17 +26,17 @@
     "description": {
       "type": "richtext"
     },
-    "contracts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::contract.contract",
-      "mappedBy": "protocol"
-    },
     "chains": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::chain.chain",
       "inversedBy": "protocols"
+    },
+    "contracts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::contract.contract",
+      "mappedBy": "protocols"
     }
   }
 }

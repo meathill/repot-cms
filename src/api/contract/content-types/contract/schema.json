@@ -4,8 +4,7 @@
   "info": {
     "singularName": "contract",
     "pluralName": "contracts",
-    "displayName": "Contract",
-    "description": ""
+    "displayName": "Contract"
   },
   "options": {
     "draftAndPublish": true
@@ -14,18 +13,19 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": true
     },
     "description": {
-      "type": "richtext"
+      "type": "text",
+      "required": true
     },
-    "document_link": {
-      "type": "string"
+    "document_links": {
+      "type": "text",
+      "required": true
     },
-    "protocol": {
+    "protocols": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::protocol.protocol",
       "inversedBy": "contracts"
     }
