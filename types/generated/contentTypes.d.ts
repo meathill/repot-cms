@@ -393,6 +393,8 @@ export interface ApiChainChain extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::chain.chain'> &
       Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images' | 'files'>;
+    logo_url: Schema.Attribute.String;
     name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
@@ -415,6 +417,7 @@ export interface ApiChainChain extends Struct.CollectionTypeSchema {
 export interface ApiContractContract extends Struct.CollectionTypeSchema {
   collectionName: 'contracts';
   info: {
+    description: '';
     displayName: 'Contract';
     pluralName: 'contracts';
     singularName: 'contract';
@@ -434,7 +437,10 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
       'api::contract.contract'
     > &
       Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images' | 'files'>;
+    logo_url: Schema.Attribute.String;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+    overview: Schema.Attribute.Text;
     protocols: Schema.Attribute.Relation<
       'manyToMany',
       'api::protocol.protocol'
@@ -475,9 +481,12 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
       'api::protocol.protocol'
     > &
       Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images' | 'files'>;
+    logo_url: Schema.Attribute.String;
     name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    overview: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

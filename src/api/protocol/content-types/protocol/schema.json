@@ -37,6 +37,20 @@
       "relation": "manyToMany",
       "target": "api::contract.contract",
       "mappedBy": "protocols"
+    },
+    "overview": {
+      "type": "text"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "logo_url": {
+      "type": "string"
     }
   }
 }

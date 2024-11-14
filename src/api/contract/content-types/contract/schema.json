@@ -4,7 +4,8 @@
   "info": {
     "singularName": "contract",
     "pluralName": "contracts",
-    "displayName": "Contract"
+    "displayName": "Contract",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -28,6 +29,20 @@
       "relation": "manyToMany",
       "target": "api::protocol.protocol",
       "inversedBy": "contracts"
+    },
+    "overview": {
+      "type": "text"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "logo_url": {
+      "type": "string"
     }
   }
 }
