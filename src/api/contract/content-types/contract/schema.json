@@ -16,10 +16,6 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "text",
-      "required": true
-    },
     "document_links": {
       "type": "text",
       "required": true
@@ -34,15 +30,19 @@
       "type": "text"
     },
     "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "logo_url": {
       "type": "string"
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }
