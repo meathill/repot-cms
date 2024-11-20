@@ -475,6 +475,7 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
     description: Schema.Attribute.RichText;
     document_link: Schema.Attribute.String;
     info: Schema.Attribute.RichText;
+    is_featured: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

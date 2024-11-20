@@ -42,15 +42,19 @@
       "type": "text"
     },
     "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "logo_url": {
       "type": "string"
+    },
+    "is_featured": {
+      "type": "boolean"
     }
   }
 }
