@@ -446,6 +446,7 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
       'api::protocol.protocol'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -488,6 +489,44 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     overview: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTagTag extends Struct.CollectionTypeSchema {
+  collectionName: 'tags';
+  info: {
+    displayName: 'Tag';
+    pluralName: 'tags';
+    singularName: 'tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contracts: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::contract.contract'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    icon: Schema.Attribute.String;
+    icon_image: Schema.Attribute.Media<'images' | 'files'>;
+    label: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'> &
+      Schema.Attribute.Private;
+    protocols: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::protocol.protocol'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1007,6 +1046,7 @@ declare module '@strapi/strapi' {
       'api::chain.chain': ApiChainChain;
       'api::contract.contract': ApiContractContract;
       'api::protocol.protocol': ApiProtocolProtocol;
+      'api::tag.tag': ApiTagTag;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

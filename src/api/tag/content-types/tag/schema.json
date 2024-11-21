@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tags",
+  "info": {
+    "singularName": "tag",
+    "pluralName": "tags",
+    "displayName": "Tag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "icon": {
+      "type": "string"
+    },
+    "icon_image": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "protocols": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::protocol.protocol",
+      "inversedBy": "tags"
+    },
+    "contracts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::contract.contract",
+      "inversedBy": "tags"
+    }
+  }
+}
