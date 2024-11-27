@@ -49,6 +49,14 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "mappedBy": "contracts"
+    },
+    "likes": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "downloads": {
+      "type": "biginteger",
+      "default": "0"
     }
   }
 }

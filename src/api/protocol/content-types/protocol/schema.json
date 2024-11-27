@@ -61,6 +61,10 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "mappedBy": "protocols"
+    },
+    "likes": {
+      "type": "biginteger",
+      "default": "0"
     }
   }
 }

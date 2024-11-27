@@ -431,6 +431,8 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     description: Schema.Attribute.RichText;
     document_links: Schema.Attribute.Text & Schema.Attribute.Required;
+    downloads: Schema.Attribute.BigInteger & Schema.Attribute.DefaultTo<'0'>;
+    likes: Schema.Attribute.BigInteger & Schema.Attribute.DefaultTo<'0'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -477,6 +479,7 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
     document_link: Schema.Attribute.String;
     info: Schema.Attribute.RichText;
     is_featured: Schema.Attribute.Boolean;
+    likes: Schema.Attribute.BigInteger & Schema.Attribute.DefaultTo<'0'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -500,6 +503,7 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
 export interface ApiTagTag extends Struct.CollectionTypeSchema {
   collectionName: 'tags';
   info: {
+    description: '';
     displayName: 'Tag';
     pluralName: 'tags';
     singularName: 'tag';
@@ -517,12 +521,12 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     icon: Schema.Attribute.String;
     icon_image: Schema.Attribute.Media<'images' | 'files'>;
-    label: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'> &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     protocols: Schema.Attribute.Relation<
       'manyToMany',
       'api::protocol.protocol'
