@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "protocol_stars",
+  "info": {
+    "singularName": "protocol-star",
+    "pluralName": "protocol-stars",
+    "displayName": "Protocol star",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "stared_protocols"
+    },
+    "protocol": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::protocol.protocol",
+      "inversedBy": "stared_users"
+    }
+  }
+}

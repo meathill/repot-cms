@@ -414,6 +414,39 @@ export interface ApiChainChain extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiContractStarContractStar
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'contract_stars';
+  info: {
+    displayName: 'Contract star';
+    pluralName: 'contract-stars';
+    singularName: 'contract-star';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    contract: Schema.Attribute.Relation<'manyToOne', 'api::contract.contract'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contract-star.contract-star'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiContractContract extends Struct.CollectionTypeSchema {
   collectionName: 'contracts';
   info: {
@@ -448,10 +481,48 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
       'api::protocol.protocol'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    stared_users: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contract-star.contract-star'
+    >;
     tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProtocolStarProtocolStar
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'protocol_stars';
+  info: {
+    description: '';
+    displayName: 'Protocol star';
+    pluralName: 'protocol-stars';
+    singularName: 'protocol-star';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::protocol-star.protocol-star'
+    > &
+      Schema.Attribute.Private;
+    protocol: Schema.Attribute.Relation<'manyToOne', 'api::protocol.protocol'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -493,6 +564,10 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
       Schema.Attribute.Unique;
     overview: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
+    stared_users: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::protocol-star.protocol-star'
+    >;
     tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1025,6 +1100,14 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    stared_contract: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contract-star.contract-star'
+    >;
+    stared_protocols: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::protocol-star.protocol-star'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1048,7 +1131,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::chain.chain': ApiChainChain;
+      'api::contract-star.contract-star': ApiContractStarContractStar;
       'api::contract.contract': ApiContractContract;
+      'api::protocol-star.protocol-star': ApiProtocolStarProtocolStar;
       'api::protocol.protocol': ApiProtocolProtocol;
       'api::tag.tag': ApiTagTag;
       'plugin::content-releases.release': PluginContentReleasesRelease;

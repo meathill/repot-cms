@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contract_stars",
+  "info": {
+    "singularName": "contract-star",
+    "pluralName": "contract-stars",
+    "displayName": "Contract star"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "stared_contract"
+    },
+    "contract": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contract.contract",
+      "inversedBy": "stared_users"
+    }
+  }
+}

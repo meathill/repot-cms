@@ -1,19 +1,18 @@
 {
   "name": "repot-cms",
-  "version": "0.1.6",
   "private": true,
   "description": "A Strapi application",
   "scripts": {
     "build": "strapi build",
     "deploy": "strapi deploy",
-    "develop": "strapi develop",
+    "develop": "NODE_ENV=development strapi develop",
     "start": "strapi start",
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.3.0",
-    "@strapi/plugin-users-permissions": "5.3.0",
-    "@strapi/strapi": "5.3.0",
+    "@strapi/plugin-cloud": "5.4.2",
+    "@strapi/plugin-users-permissions": "5.4.2",
+    "@strapi/strapi": "5.4.2",
     "mysql2": "3.9.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -22,10 +21,10 @@
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
-    "@types/node": "^20.17.6",
+    "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.2"
   },
   "engines": {
     "node": ">=20.0.0 <=22.x.x",

@@ -65,6 +65,12 @@
     "likes": {
       "type": "biginteger",
       "default": "0"
+    },
+    "stared_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::protocol-star.protocol-star",
+      "mappedBy": "protocol"
     }
   }
 }

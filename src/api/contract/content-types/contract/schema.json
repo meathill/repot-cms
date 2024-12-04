@@ -57,6 +57,12 @@
     "downloads": {
       "type": "biginteger",
       "default": "0"
+    },
+    "stared_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contract-star.contract-star",
+      "mappedBy": "contract"
     }
   }
 }
