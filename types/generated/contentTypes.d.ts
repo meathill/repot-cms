@@ -414,13 +414,13 @@ export interface ApiChainChain extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiContractStarContractStar
+export interface ApiContractStarLogContractStarLog
   extends Struct.CollectionTypeSchema {
-  collectionName: 'contract_stars';
+  collectionName: 'contract_star_logs';
   info: {
-    displayName: 'Contract star';
-    pluralName: 'contract-stars';
-    singularName: 'contract-star';
+    displayName: 'Contract star log';
+    pluralName: 'contract-star-logs';
+    singularName: 'contract-star-log';
   };
   options: {
     draftAndPublish: false;
@@ -433,7 +433,7 @@ export interface ApiContractStarContractStar
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::contract-star.contract-star'
+      'api::contract-star-log.contract-star-log'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -444,6 +444,38 @@ export interface ApiContractStarContractStar
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+  };
+}
+
+export interface ApiContractStarContractStar
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'contract_stars';
+  info: {
+    description: '';
+    displayName: 'Contract star';
+    pluralName: 'contract-stars';
+    singularName: 'contract-star';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    contract: Schema.Attribute.Relation<'oneToOne', 'api::contract.contract'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    downloads: Schema.Attribute.BigInteger;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contract-star.contract-star'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    stars: Schema.Attribute.BigInteger;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -464,8 +496,6 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     description: Schema.Attribute.RichText;
     document_links: Schema.Attribute.Text & Schema.Attribute.Required;
-    downloads: Schema.Attribute.BigInteger & Schema.Attribute.DefaultTo<'0'>;
-    likes: Schema.Attribute.BigInteger & Schema.Attribute.DefaultTo<'0'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -481,14 +511,51 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
       'api::protocol.protocol'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    stared_users: Schema.Attribute.Relation<
+    star_logs: Schema.Attribute.Relation<
       'oneToMany',
+      'api::contract-star-log.contract-star-log'
+    >;
+    stars: Schema.Attribute.Relation<
+      'oneToOne',
       'api::contract-star.contract-star'
     >;
     tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProtocolStarLogProtocolStarLog
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'protocol_star_logs';
+  info: {
+    displayName: 'Protocol star log';
+    pluralName: 'protocol-star-logs';
+    singularName: 'protocol-star-log';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::protocol-star-log.protocol-star-log'
+    > &
+      Schema.Attribute.Private;
+    protocol: Schema.Attribute.Relation<'manyToOne', 'api::protocol.protocol'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -514,15 +581,12 @@ export interface ApiProtocolStarProtocolStar
       'api::protocol-star.protocol-star'
     > &
       Schema.Attribute.Private;
-    protocol: Schema.Attribute.Relation<'manyToOne', 'api::protocol.protocol'>;
+    protocol: Schema.Attribute.Relation<'oneToOne', 'api::protocol.protocol'>;
     publishedAt: Schema.Attribute.DateTime;
+    stars: Schema.Attribute.BigInteger;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
   };
 }
 
@@ -550,7 +614,6 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
     document_link: Schema.Attribute.String;
     info: Schema.Attribute.RichText;
     is_featured: Schema.Attribute.Boolean;
-    likes: Schema.Attribute.BigInteger & Schema.Attribute.DefaultTo<'0'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -564,8 +627,12 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
       Schema.Attribute.Unique;
     overview: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
-    stared_users: Schema.Attribute.Relation<
+    star_logs: Schema.Attribute.Relation<
       'oneToMany',
+      'api::protocol-star-log.protocol-star-log'
+    >;
+    stars: Schema.Attribute.Relation<
+      'oneToOne',
       'api::protocol-star.protocol-star'
     >;
     tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
@@ -1068,12 +1135,15 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    contract_star_logs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contract-star-log.contract-star-log'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1093,20 +1163,16 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    protocol_star_logs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::protocol-star-log.protocol-star-log'
+    >;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.role'
-    >;
-    stared_contract: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::contract-star.contract-star'
-    >;
-    stared_protocols: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::protocol-star.protocol-star'
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1131,8 +1197,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::chain.chain': ApiChainChain;
+      'api::contract-star-log.contract-star-log': ApiContractStarLogContractStarLog;
       'api::contract-star.contract-star': ApiContractStarContractStar;
       'api::contract.contract': ApiContractContract;
+      'api::protocol-star-log.protocol-star-log': ApiProtocolStarLogProtocolStarLog;
       'api::protocol-star.protocol-star': ApiProtocolStarProtocolStar;
       'api::protocol.protocol': ApiProtocolProtocol;
       'api::tag.tag': ApiTagTag;

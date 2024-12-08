@@ -12,17 +12,14 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "stared_protocols"
+    "stars": {
+      "type": "biginteger"
     },
     "protocol": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToOne",
       "target": "api::protocol.protocol",
-      "inversedBy": "stared_users"
+      "mappedBy": "stars"
     }
   }
 }

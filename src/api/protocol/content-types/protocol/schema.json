@@ -62,14 +62,16 @@
       "target": "api::tag.tag",
       "mappedBy": "protocols"
     },
-    "likes": {
-      "type": "biginteger",
-      "default": "0"
+    "stars": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::protocol-star.protocol-star",
+      "inversedBy": "protocol"
     },
-    "stared_users": {
+    "star_logs": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::protocol-star.protocol-star",
+      "target": "api::protocol-star-log.protocol-star-log",
       "mappedBy": "protocol"
     }
   }

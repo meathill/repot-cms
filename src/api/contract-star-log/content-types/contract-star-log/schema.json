@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contract_star_logs",
+  "info": {
+    "singularName": "contract-star-log",
+    "pluralName": "contract-star-logs",
+    "displayName": "Contract star log"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "contract": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contract.contract",
+      "inversedBy": "star_logs"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "contract_star_logs"
+    }
+  }
+}

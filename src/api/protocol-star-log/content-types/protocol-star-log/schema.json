@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "protocol_star_logs",
+  "info": {
+    "singularName": "protocol-star-log",
+    "pluralName": "protocol-star-logs",
+    "displayName": "Protocol star log"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "protocol": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::protocol.protocol",
+      "inversedBy": "star_logs"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "protocol_star_logs"
+    }
+  }
+}

@@ -4,24 +4,25 @@
   "info": {
     "singularName": "contract-star",
     "pluralName": "contract-stars",
-    "displayName": "Contract star"
+    "displayName": "Contract star",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "stared_contract"
+    "stars": {
+      "type": "biginteger"
+    },
+    "downloads": {
+      "type": "biginteger"
     },
     "contract": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToOne",
       "target": "api::contract.contract",
-      "inversedBy": "stared_users"
+      "mappedBy": "stars"
     }
   }
 }

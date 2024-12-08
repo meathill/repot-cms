@@ -9,7 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -65,16 +65,16 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "stared_protocols": {
+    "contract_star_logs": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::protocol-star.protocol-star",
+      "target": "api::contract-star-log.contract-star-log",
       "mappedBy": "user"
     },
-    "stared_contract": {
+    "protocol_star_logs": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::contract-star.contract-star",
+      "target": "api::protocol-star-log.protocol-star-log",
       "mappedBy": "user"
     }
   }

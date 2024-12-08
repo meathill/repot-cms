@@ -50,18 +50,16 @@
       "target": "api::tag.tag",
       "mappedBy": "contracts"
     },
-    "likes": {
-      "type": "biginteger",
-      "default": "0"
+    "stars": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::contract-star.contract-star",
+      "inversedBy": "contract"
     },
-    "downloads": {
-      "type": "biginteger",
-      "default": "0"
-    },
-    "stared_users": {
+    "star_logs": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::contract-star.contract-star",
+      "target": "api::contract-star-log.contract-star-log",
       "mappedBy": "contract"
     }
   }
