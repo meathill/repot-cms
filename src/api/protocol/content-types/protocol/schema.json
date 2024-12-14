@@ -73,6 +73,12 @@
       "relation": "oneToMany",
       "target": "api::protocol-star-log.protocol-star-log",
       "mappedBy": "protocol"
+    },
+    "document_zip": {
+      "type": "string"
+    },
+    "document_json": {
+      "type": "string"
     }
   }
 }

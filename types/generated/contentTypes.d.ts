@@ -495,7 +495,9 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.RichText;
+    document_json: Schema.Attribute.String;
     document_links: Schema.Attribute.Text & Schema.Attribute.Required;
+    document_zip: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -611,7 +613,9 @@ export interface ApiProtocolProtocol extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.RichText;
+    document_json: Schema.Attribute.String;
     document_link: Schema.Attribute.String;
+    document_zip: Schema.Attribute.String;
     info: Schema.Attribute.RichText;
     is_featured: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;

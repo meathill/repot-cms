@@ -61,6 +61,12 @@
       "relation": "oneToMany",
       "target": "api::contract-star-log.contract-star-log",
       "mappedBy": "contract"
+    },
+    "document_zip": {
+      "type": "string"
+    },
+    "document_json": {
+      "type": "string"
     }
   }
 }
