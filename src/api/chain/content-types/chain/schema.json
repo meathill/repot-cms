@@ -71,7 +71,7 @@
       "target": "api::chain-star-log.chain-star-log",
       "mappedBy": "chain"
     },
-    "chain_star": {
+    "stars": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::chain-star.chain-star",

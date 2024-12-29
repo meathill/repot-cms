@@ -4,7 +4,8 @@
   "info": {
     "singularName": "chain-star",
     "pluralName": "chain-stars",
-    "displayName": "Chain star"
+    "displayName": "Chain star",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -15,7 +16,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::chain.chain",
-      "inversedBy": "chain_star"
+      "inversedBy": "stars"
     },
     "stars": {
       "type": "biginteger"

@@ -406,6 +406,7 @@ export interface ApiChainStarLogChainStarLog
 export interface ApiChainStarChainStar extends Struct.CollectionTypeSchema {
   collectionName: 'chain_stars';
   info: {
+    description: '';
     displayName: 'Chain star';
     pluralName: 'chain-stars';
     singularName: 'chain-star';
@@ -445,10 +446,6 @@ export interface ApiChainChain extends Struct.CollectionTypeSchema {
   };
   attributes: {
     chain_language: Schema.Attribute.String & Schema.Attribute.Required;
-    chain_star: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::chain-star.chain-star'
-    >;
     consensus: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -477,6 +474,7 @@ export interface ApiChainChain extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::chain-star-log.chain-star-log'
     >;
+    stars: Schema.Attribute.Relation<'oneToOne', 'api::chain-star.chain-star'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
