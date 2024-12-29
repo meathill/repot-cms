@@ -76,6 +76,12 @@
       "relation": "oneToMany",
       "target": "api::protocol-star-log.protocol-star-log",
       "mappedBy": "user"
+    },
+    "chain_star_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::chain-star-log.chain-star-log",
+      "mappedBy": "user"
     }
   }
 }

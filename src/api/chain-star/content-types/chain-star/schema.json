@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "chain_stars",
+  "info": {
+    "singularName": "chain-star",
+    "pluralName": "chain-stars",
+    "displayName": "Chain star"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "chain": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chain.chain",
+      "inversedBy": "chain_star"
+    },
+    "stars": {
+      "type": "biginteger"
+    }
+  }
+}

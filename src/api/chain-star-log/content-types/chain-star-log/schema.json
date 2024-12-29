@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "chain_star_logs",
+  "info": {
+    "singularName": "chain-star-log",
+    "pluralName": "chain-star-logs",
+    "displayName": "Chain star log",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "chain": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::chain.chain",
+      "inversedBy": "star_logs"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "chain_star_logs"
+    }
+  }
+}

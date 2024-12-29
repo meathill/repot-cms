@@ -64,6 +64,18 @@
     },
     "logo_url": {
       "type": "string"
+    },
+    "star_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::chain-star-log.chain-star-log",
+      "mappedBy": "chain"
+    },
+    "chain_star": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chain-star.chain-star",
+      "mappedBy": "chain"
     }
   }
 }
