@@ -93,6 +93,12 @@
       "type": "biginteger",
       "min": "0",
       "default": "0"
+    },
+    "user_repots": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-repot.user-repot",
+      "mappedBy": "user"
     }
   }
 }

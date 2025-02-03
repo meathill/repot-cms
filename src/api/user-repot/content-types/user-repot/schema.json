@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_repots",
+  "info": {
+    "singularName": "user-repot",
+    "pluralName": "user-repots",
+    "displayName": "User Repot"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "github_link": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "user_repots"
+    },
+    "is_accepted": {
+      "type": "boolean"
+    }
+  }
+}

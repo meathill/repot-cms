@@ -818,6 +818,41 @@ export interface ApiUserProtocolContractUserProtocolContract
   };
 }
 
+export interface ApiUserRepotUserRepot extends Struct.CollectionTypeSchema {
+  collectionName: 'user_repots';
+  info: {
+    displayName: 'User Repot';
+    pluralName: 'user-repots';
+    singularName: 'user-repot';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    github_link: Schema.Attribute.String & Schema.Attribute.Required;
+    is_accepted: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-repot.user-repot'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1331,6 +1366,10 @@ export interface PluginUsersPermissionsUser
       'oneToOne',
       'api::user-protocol-contract.user-protocol-contract'
     >;
+    user_repots: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-repot.user-repot'
+    >;
     username: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
@@ -1362,6 +1401,7 @@ declare module '@strapi/strapi' {
       'api::protocol.protocol': ApiProtocolProtocol;
       'api::tag.tag': ApiTagTag;
       'api::user-protocol-contract.user-protocol-contract': ApiUserProtocolContractUserProtocolContract;
+      'api::user-repot.user-repot': ApiUserRepotUserRepot;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
