@@ -88,6 +88,11 @@
       "relation": "oneToOne",
       "target": "api::user-protocol-contract.user-protocol-contract",
       "mappedBy": "users_permissions_user"
+    },
+    "points": {
+      "type": "biginteger",
+      "min": "0",
+      "default": "0"
     }
   }
 }

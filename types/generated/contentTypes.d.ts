@@ -1305,6 +1305,14 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    points: Schema.Attribute.BigInteger &
+      Schema.Attribute.SetMinMax<
+        {
+          min: '0';
+        },
+        string
+      > &
+      Schema.Attribute.DefaultTo<'0'>;
     protocol_star_logs: Schema.Attribute.Relation<
       'oneToMany',
       'api::protocol-star-log.protocol-star-log'
