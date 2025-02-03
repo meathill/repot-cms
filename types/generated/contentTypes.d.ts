@@ -597,6 +597,36 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiNeedMoreNeedMore extends Struct.CollectionTypeSchema {
+  collectionName: 'need_mores';
+  info: {
+    displayName: 'Need More';
+    pluralName: 'need-mores';
+    singularName: 'need-more';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    is_checked: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::need-more.need-more'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_id: Schema.Attribute.String;
+  };
+}
+
 export interface ApiProtocolStarLogProtocolStarLog
   extends Struct.CollectionTypeSchema {
   collectionName: 'protocol_star_logs';
@@ -750,6 +780,41 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiUserProtocolContractUserProtocolContract
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'user_protocol_contracts';
+  info: {
+    displayName: 'User Protocol Contract';
+    pluralName: 'user-protocol-contracts';
+    singularName: 'user-protocol-contract';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    github: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-protocol-contract.user-protocol-contract'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -1254,6 +1319,10 @@ export interface PluginUsersPermissionsUser
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user_protocol_contract: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::user-protocol-contract.user-protocol-contract'
+    >;
     username: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
@@ -1279,10 +1348,12 @@ declare module '@strapi/strapi' {
       'api::contract-star-log.contract-star-log': ApiContractStarLogContractStarLog;
       'api::contract-star.contract-star': ApiContractStarContractStar;
       'api::contract.contract': ApiContractContract;
+      'api::need-more.need-more': ApiNeedMoreNeedMore;
       'api::protocol-star-log.protocol-star-log': ApiProtocolStarLogProtocolStarLog;
       'api::protocol-star.protocol-star': ApiProtocolStarProtocolStar;
       'api::protocol.protocol': ApiProtocolProtocol;
       'api::tag.tag': ApiTagTag;
+      'api::user-protocol-contract.user-protocol-contract': ApiUserProtocolContractUserProtocolContract;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

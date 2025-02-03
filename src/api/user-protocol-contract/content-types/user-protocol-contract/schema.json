@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_protocol_contracts",
+  "info": {
+    "singularName": "user-protocol-contract",
+    "pluralName": "user-protocol-contracts",
+    "displayName": "User Protocol Contract"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "github": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "user_protocol_contract"
+    }
+  }
+}
