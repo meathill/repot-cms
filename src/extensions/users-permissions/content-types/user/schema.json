@@ -99,6 +99,12 @@
       "relation": "oneToMany",
       "target": "api::user-repot.user-repot",
       "mappedBy": "user"
+    },
+    "user_reports": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-report.user-report",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

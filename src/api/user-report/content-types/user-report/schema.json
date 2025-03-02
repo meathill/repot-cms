@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_reports",
+  "info": {
+    "singularName": "user-report",
+    "pluralName": "user-reports",
+    "displayName": "User report"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "content": {
+      "type": "text",
+      "required": true
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "user_reports"
+    },
+    "from": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

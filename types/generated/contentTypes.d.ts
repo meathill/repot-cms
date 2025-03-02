@@ -818,6 +818,39 @@ export interface ApiUserProtocolContractUserProtocolContract
   };
 }
 
+export interface ApiUserReportUserReport extends Struct.CollectionTypeSchema {
+  collectionName: 'user_reports';
+  info: {
+    displayName: 'User report';
+    pluralName: 'user-reports';
+    singularName: 'user-report';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    content: Schema.Attribute.Text & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    from: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-report.user-report'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiUserRepotUserRepot extends Struct.CollectionTypeSchema {
   collectionName: 'user_repots';
   info: {
@@ -1366,6 +1399,10 @@ export interface PluginUsersPermissionsUser
       'oneToOne',
       'api::user-protocol-contract.user-protocol-contract'
     >;
+    user_reports: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-report.user-report'
+    >;
     user_repots: Schema.Attribute.Relation<
       'oneToMany',
       'api::user-repot.user-repot'
@@ -1401,6 +1438,7 @@ declare module '@strapi/strapi' {
       'api::protocol.protocol': ApiProtocolProtocol;
       'api::tag.tag': ApiTagTag;
       'api::user-protocol-contract.user-protocol-contract': ApiUserProtocolContractUserProtocolContract;
+      'api::user-report.user-report': ApiUserReportUserReport;
       'api::user-repot.user-repot': ApiUserRepotUserRepot;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
