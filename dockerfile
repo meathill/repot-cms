@@ -8,6 +8,7 @@ WORKDIR /opt/
 COPY package.json pnpm-lock.yaml ./
 RUN npm install -g pnpm node-gyp
 RUN pnpm config set network-timeout 600000 -g && pnpm install --production
+RUN SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm_config_arch=x64 npm_config_platform=linuxmusl yarn add sharp@0.32.6
 ENV PATH=/opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . .
