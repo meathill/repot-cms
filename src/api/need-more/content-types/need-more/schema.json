@@ -4,7 +4,8 @@
   "info": {
     "singularName": "need-more",
     "pluralName": "need-mores",
-    "displayName": "Need More"
+    "displayName": "Need More",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -20,6 +21,12 @@
     },
     "is_checked": {
       "type": "boolean"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "need_mores"
     }
   }
 }

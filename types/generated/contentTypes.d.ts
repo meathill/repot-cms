@@ -600,6 +600,7 @@ export interface ApiContractContract extends Struct.CollectionTypeSchema {
 export interface ApiNeedMoreNeedMore extends Struct.CollectionTypeSchema {
   collectionName: 'need_mores';
   info: {
+    description: '';
     displayName: 'Need More';
     pluralName: 'need-mores';
     singularName: 'need-more';
@@ -623,6 +624,10 @@ export interface ApiNeedMoreNeedMore extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     user_id: Schema.Attribute.String;
   };
 }
@@ -821,6 +826,7 @@ export interface ApiUserProtocolContractUserProtocolContract
 export interface ApiUserReportUserReport extends Struct.CollectionTypeSchema {
   collectionName: 'user_reports';
   info: {
+    description: '';
     displayName: 'User report';
     pluralName: 'user-reports';
     singularName: 'user-report';
@@ -844,7 +850,7 @@ export interface ApiUserReportUserReport extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    users_permissions_user: Schema.Attribute.Relation<
+    user: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
     >;
@@ -1368,6 +1374,10 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    need_mores: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::need-more.need-more'
+    >;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{

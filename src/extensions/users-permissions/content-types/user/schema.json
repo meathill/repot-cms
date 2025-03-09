@@ -104,7 +104,13 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::user-report.user-report",
-      "mappedBy": "users_permissions_user"
+      "mappedBy": "user"
+    },
+    "need_mores": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::need-more.need-more",
+      "mappedBy": "user"
     }
   }
 }
