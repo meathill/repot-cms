@@ -629,6 +629,10 @@ export interface ApiNeedMoreNeedMore extends Struct.CollectionTypeSchema {
       'plugin::users-permissions.user'
     >;
     user_id: Schema.Attribute.String;
+    user_repots: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-repot.user-repot'
+    >;
   };
 }
 
@@ -860,6 +864,7 @@ export interface ApiUserReportUserReport extends Struct.CollectionTypeSchema {
 export interface ApiUserRepotUserRepot extends Struct.CollectionTypeSchema {
   collectionName: 'user_repots';
   info: {
+    description: '';
     displayName: 'User Repot';
     pluralName: 'user-repots';
     singularName: 'user-repot';
@@ -881,6 +886,10 @@ export interface ApiUserRepotUserRepot extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+    need_more: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::need-more.need-more'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

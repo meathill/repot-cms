@@ -27,6 +27,12 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "need_mores"
+    },
+    "user_repots": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-repot.user-repot",
+      "mappedBy": "need_more"
     }
   }
 }
