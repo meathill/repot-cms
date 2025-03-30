@@ -67,6 +67,9 @@
     },
     "document_json": {
       "type": "string"
+    },
+    "ABI": {
+      "type": "text"
     }
   }
 }
