@@ -1,6 +1,6 @@
 {
   "name": "repot-cms",
-  "version": "0.1.11",
+  "version": "0.2.0",
   "private": true,
   "description": "A Strapi application",
   "scripts": {
@@ -11,26 +11,26 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "^5.11.2",
-    "@strapi/plugin-users-permissions": "^5.11.2",
-    "@strapi/strapi": "^5.11.2",
+    "@strapi/plugin-cloud": "^5.31.2",
+    "@strapi/plugin-users-permissions": "^5.31.2",
+    "@strapi/provider-upload-aws-s3": "^5.31.2",
+    "@strapi/strapi": "^5.31.2",
     "mysql2": "3.9.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.30.0",
-    "strapi-provider-cloudflare-r2": "^0.3.0",
-    "styled-components": "^6.1.15"
+    "react-router-dom": "^6.30.2",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
-    "@types/node": "^22.13.10",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "typescript": "^5.8.2"
+    "@types/node": "^24.10.1",
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.7",
+    "typescript": "^5.9.3"
   },
   "engines": {
-    "node": ">=20.0.0",
+    "node": ">=24.0.0",
     "npm": ">=10.0.0",
-    "pnpm": ">=9.10.0"
+    "pnpm": ">=10.20.0"
   },
   "strapi": {
     "uuid": "6c684c1b-448f-440e-be3d-4cb4a3f4a747"
