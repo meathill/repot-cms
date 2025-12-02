@@ -1,5 +1,5 @@
 # Creating multi-stage build for production
-FROM node:20-alpine as build
+FROM node:24-alpine as build
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
 ENV NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
@@ -7,15 +7,15 @@ ENV NODE_ENV=${NODE_ENV}
 WORKDIR /opt/
 COPY package.json pnpm-lock.yaml ./
 RUN npm install -g pnpm node-gyp
-RUN pnpm config set network-timeout 600000 -g && pnpm install --production
-RUN SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm_config_arch=x64 npm_config_platform=linuxmusl yarn add sharp@0.32.6
+RUN pnpm config set network-timeout 600000 -g && pnpm install
+RUN pnpm i better-sqlite3
 ENV PATH=/opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . .
 RUN pnpm run build
 
 # Creating final production image
-FROM node:20-alpine
+FROM node:24-alpine
 RUN apk add --no-cache vips-dev
 ENV NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
